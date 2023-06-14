@@ -1,0 +1,49 @@
+
+const stateSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: true
+  }
+});
+
+const collegeSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: true
+  }
+});
+
+const courseSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  branch:{
+    type: String,
+    required: true,
+  }
+});
+
+
+const questionSchema = new Schema({
+    link : {
+        type:URL,
+        require:true,
+        unique:true
+    },
+    course:{
+        type :Schema.Types.ObjectId,
+        require:true,
+    },
+    college: {
+        type:Schema.Types.ObjectId,
+        require:true
+    },
+    state : {
+        type:Schema.Types.ObjectId,
+        require:true
+    }
+});

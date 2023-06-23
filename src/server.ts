@@ -12,6 +12,6 @@ const server = () => {
     }
 }
 
-server()
+server();
 
 export default server

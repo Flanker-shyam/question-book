@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-const {openConnection, closeConnection} = require('../database/connectDB');
+import {openConnection, closeConnection} from '../database/connectDB';
 
 const app = express();
 

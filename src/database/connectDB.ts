@@ -1,6 +1,5 @@
-import mysql,{MysqlError,Connection} from "mysql"
-require('dotenv').config();
-;
+import mysql, {MysqlError, Connection} from "mysql"
+
 const UserName = process.env.DB_USER_NAME;
 const Password = process.env.DB_PASSWORD;
 const Database = process.env.DATABASE_NAME;
@@ -13,7 +12,7 @@ const connection:Connection = mysql.createConnection({
     database: Database as string
 });
 
-function openConnection():void
+function openConnection(): void
 {
     connection.connect((err: MysqlError)=>{
         if(err)
@@ -26,7 +25,7 @@ function openConnection():void
     });
 }
 
-function closeConnection():void
+function closeConnection(): void
 {
     connection.end((err?: MysqlError) =>{
         if (err) {

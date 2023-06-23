@@ -1,39 +1,39 @@
-const mysql = require('mysql');
+import mysql,{MysqlError,Connection} from "mysql"
 require('dotenv').config();
+;
+const UserName = process.env.DB_USER_NAME;
+const Password = process.env.DB_PASSWORD;
+const Database = process.env.DATABASE_NAME;
+const Host = process.env.DB_HOST;
 
-const UserName = process.env.USER_NAME;
-const Password = process.env.PASSWORD;
-const Database = process.env.DATABASE;
-const Host = process.env.HOST;
-
-let connection = mysql.createConnection({
-    host: Host,
-    user: UserName,
-    password: Password,
-    database: Database
+const connection:Connection = mysql.createConnection({
+    host: Host as string,
+    user: UserName as string,
+    password: Password as string,
+    database: Database as string
 });
 
-function openConnection()
+function openConnection():void
 {
-    connection.connect((err: any)=>{
+    connection.connect((err: MysqlError)=>{
         if(err)
         {
-            console.error("Could not connect to the database", err.message);
+            console.error("Could not connect to the database", err);
         }
         else{
             console.log("connection to Database is successful.");
         }
-    })
+    });
 }
 
-function closeConnection()
+function closeConnection():void
 {
-    connection.end(function(err:any) {
+    connection.end((err?: MysqlError) =>{
         if (err) {
-          return console.log('Could not close connection:' + err.message);
+          console.log('Could not close connection:' , err);
         }
         console.log('Connection to the database is closed.');
     });    
 }
 
-module.exports = {openConnection, closeConnection};
+export {openConnection, closeConnection};
